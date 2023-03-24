@@ -389,7 +389,7 @@ cdef class _IndexedGzipFile:
                 fileobj = builtin_open(filename, mode)
             try:
                 fd  = fdopen(fileobj.fileno(), 'rb')
-            except io.UnsupportedOperation:
+            except (io.UnsupportedOperation, AttributeError) as e:
                 fd  = NULL
 
         self.spacing          = spacing
